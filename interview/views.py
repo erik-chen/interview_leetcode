@@ -152,10 +152,10 @@ def history(request, company_id):
 					duration = '0秒'
 			except TypeError:  # 捕捉 finish_datetime 未记录的情况
 				duration = '非正常退出，无法获取时长'
-			# 讲计算结果存入 duration 字段
+			# 将计算结果存入 duration 字段
 			quiz.duration = duration
 			quiz.save()
-		# 讲处理过的数据存入列表
+		# 将处理过的数据存入列表
 		records_list.append(
 			{
 				'quiz_time': quiz_time,
