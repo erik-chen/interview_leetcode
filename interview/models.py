@@ -21,7 +21,7 @@ class Company(models.Model):
     表名：公司表
     作用：用来记录所有公司数据
 
-    name字段： 记录公司名，要求不重复
+    name字段：         记录公司名，要求不重复
 
     """
     name = models.CharField(max_length=50, unique=True)
@@ -52,8 +52,8 @@ class User_Question(models.Model):
     表名：用户题目关系表
     作用：用来记录用户和题目的关系（是否做过这道题）
 
-    user字段：     外键，联系用户表
-    question字段： 外键，联系题目表
+    user字段：         外键，联系用户表
+    question字段：     外键，联系题目表
 
     """
     user = models.ForeignKey(User, on_delete=User)
@@ -65,8 +65,8 @@ class Company_Question(models.Model):
     表名：公司题目关系表
     作用：用来记录公司和题目的关系（题目是否在公司题库中）
 
-    company字段：  外键，联系公司表
-    question字段： 外键，联系题目表
+    company字段：      外键，联系公司表
+    question字段：     外键，联系题目表
 
     """
     company = models.ForeignKey(Company, on_delete=Company)
