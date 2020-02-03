@@ -90,7 +90,7 @@ def interview(request, company_id, interview_question_number=3):
 		# 把所有做过的题，都标记成没做过（因为做了一轮了，要全部重新做）
 		for question in questions_done_set:
 			User_Question.objects.filter(user_id=user.id, question=question).delete()
-		# 把（3-n）重新出的题，都标记成做过
+		# 把（3-n）道重新出的题，都标记成做过
 		for question in tail_questions_list:
 			User_Question.objects.create(user_id=user.id, question=question)
 
