@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/ct.css">
+    <style>
+      .title{font-size: 20px;}
+      .menu{border-bottom: solid 1px #eee;padding: 20px;text-align: center;}
+      .mid{margin: 20px 0;}
+    </style>
+    <title>热门企业</title>
+  </head>
+  <body>
+     <div class="row menu">
+      <div class="col-6 col-md-4 title">面试系统</div>
+      <div class="col-6 col-md-4"></div>
+      <div class="col-6 col-md-4" id="divlogin1">
+        
+        {% ifequal username 61 %}
+        <a href = "javascript:void(0)" onclick = "rg()">注册</a>
+        <a href = "javascript:void(0)" onclick = "sh()">登录</a>
+        {% else %}
+        {{ username }} <a href="/logout/">退出</a>
+        {% endifequal %}
+      </div>
+    </div>
+
+    <div class="row mid"></div>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      {% for company in companies_queryset %}
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <img src="{{ company.avatar }}" class="card-img-top" alt="">
+          <div class="card-body">
+          <h5 class="card-title">{{ company.name}}面试</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <a href="/interview/{{ company.id}}/" class="card-link">开始一场面试</a>
+          <a href="/history/{{ company.id}}/" class="card-link">回看面试记录</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/ct.js"></script>
+
+
+<div class="divlogin">
+    <div id="light" class="white_content">
+        <div class="input-group login">
+          <div class="input-group-prepend">
+            <span class="input-group-text">用户名</span>
+          </div>
+          <input type="text" id="txtuid" aria-label="用户名" class="form-control">
+        </div>
+        <div class="input-group login">
+          <div class="input-group-prepend">
+            <span class="input-group-text">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+          </div>
+          <input type="password" id="txtpwd" aria-label="密 码" class="form-control">
+        </div>
+        <div class="input-group login btnlogin2">
+          <a href="javascript:login();" class="btn btn-success">登录</a>
+        </div>
+        <div id="retmsg"></div>
+    </div> 
+        <div id="light2" class="white_content">
+        <div class="input-group login">
+          <div class="input-group-prepend">
+            <span class="input-group-text">用 户 名</span>
+          </div>
+          <input type="text" id="txtuid2" aria-label="用户名" class="form-control">
+        </div>
+        <div class="input-group login">
+          <div class="input-group-prepend">
+            <span class="input-group-text">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+          </div>
+          <input type="password" id="txtpwd2" aria-label="密 码" class="form-control">
+        </div>
+        <div class="input-group login">
+          <div class="input-group-prepend">
+            <span class="input-group-text">确认密码</span>
+          </div>
+          <input type="password" id="txtpwd22" aria-label="密 码" class="form-control">
+        </div>
+        <div class="input-group login btnlogin2">
+          <a href="javascript:register();" class="btn btn-success">注册</a>
+        </div>
+        <div id="retmsg2"></div>
+    </div> 
+    <div id="fade" class="black_overlay"></div> 
+</div>
+
+  </body>
+    <script>
+
+$(function(){
+    $('#fade').click(function(){
+      dp();
+    });
+});
+  </script>
+
+
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/ct.css">
+    <style>
+      .title{font-size: 20px;}
+      .menu{border-bottom: solid 1px #eee;padding: 10px;text-align: center;}
+      .mid{margin: 20px 0;}
+    </style>
+    <title>面试记录</title>
+  </head>
+  <body>
+     <div class="row menu">
+      <div class="col-6 col-md-4 title"><a href="/">返回</a></div>
+      <div class="col-6 col-md-4"></div>
+      <div class="col-6 col-md-4">{{ username }} <a href="/logout/">退出</a></div>
+    </div>
+
+    <div class="row mid"></div>
+    
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+      {% for company in companies_queryset %}
+      <a href="/history/{{company.id}}/">
+      <div class="collapseExample">
+        <div class="card">
+          <div class="card-body">{{ company.name }}面试记录</div>
+        </div>
+      </div>
+      </a>
+      {% endfor %}
+      </div>
+      <div class="col-md-8">
+        <div class="card card-body" style="height: 90%;width: 90%;overflow: scroll;">
+            <h5 class="card-title mtxt">共面试{{company_name}} {{ quiz_number }} 次</h5>
+            <h5 class="row">
+              <div class="col-md-1">次数</div>
+              <div class="col-md-4">用时</div>
+              <div class="col-md-2">提交数</div>
+              <div class="col-md-3">面试时间</div>
+            </h5>
+            {% for record in records_list %}
+            <div class="row">
+              <div class="col-md-1">{{ forloop.revcounter }}</div>
+              <div class="col-md-4">{{ record.duration }}</div>
+              <div class="col-md-2">{{ record.submit_times }}/3</div>
+              <div class="col-md-3">{{ record.quiz_time }}</div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+
+  </body>
+  <script>
+
+  </script>
+</html>

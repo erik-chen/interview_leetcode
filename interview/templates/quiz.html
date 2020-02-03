@@ -1,0 +1,92 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/ct.css">
+    <style>
+    .title{font-size: 20px;}
+      .menu{border-bottom: solid 1px #eee;padding: 10px;text-align: center;}
+      .mid{margin: 20px 0;}
+    </style>
+    <title>模拟面试</title>
+  </head>
+  <body>
+
+    <div class="row mid"></div>
+    
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        {% for sub in questions_list %}
+          <a class="btn btn-primary" href="javascript:cg('{{sub.id}}');" role="button" >题目{{sub.id}}</a>
+        {% endfor %}
+
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"> <a id="txtdown"></a> <a href="javascript:finish()">结束面试</a></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+      {% for sub in questions_list %}
+      {% if forloop.first %}
+      <input type="hidden" id="txtselectedsubid" value="{{sub.id}}">
+      {%endif%}
+      <div class="collapseExample subs" id="sub{{sub.id}}">
+        <div class="card">
+          <div class="card-body">
+          <input type="hidden" id="txtanswersub{{sub.id}}">
+          <h5 class="card-title">{{ sub.title }}</h5>
+          <p class="card-text">{{ sub.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+      <div class="col-md-5">
+        <div class="card card-body" style="height: 400px;width: 400px">
+          <textarea name="" id="txtanswer" cols="30" rows="10"></textarea>
+          <button id="btnsubmit">提交</button>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/ct.js"></script>
+
+
+
+  
+  <input type="hidden" id="txtquizid" value="{{quiz_id}}">
+  </body>
+  <script>
+$(function(){
+  $('.subs')[0].style.display='block';
+  //$('.subs')[0].click();
+  $('#btnsubmit').click(function(r){
+    btnsubmit();
+  });
+  var delay=90*60*1000;
+  var s = setInterval(function (){
+                   var dates =  countTime(delay,"txtdown");
+                   delay-=500;
+                    if(dates<=0) {
+                        clearInterval(s);
+                        autofinish();
+
+                    }
+            },500);
+
+});
+
+  </script>
+</html>
