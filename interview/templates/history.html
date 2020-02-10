@@ -46,7 +46,7 @@
               <div class="col-md-2">提交数</div>
               <div class="col-md-3">面试时间</div>
             </h5>
-            {% for record in records_list %}
+            {% for record in records_list reversed %}
             <div class="row">
               <div class="col-md-1">{{ forloop.revcounter }}</div>
               <div class="col-md-4">{{ record.duration }}</div>
