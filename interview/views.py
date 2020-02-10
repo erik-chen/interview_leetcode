@@ -128,7 +128,7 @@ def history(request, company_id):
 	quiz_number = len(quizzes_queryset)
 	# 新建列表，用来存放处理后的数据
 	records_list = []
-	for quiz in reversed(quizzes_queryset):
+	for quiz in quizzes_queryset:
 		# 处理面试时间
 		quiz_time = str(quiz.start_datetime)[:19]
 		# 处理提交数
