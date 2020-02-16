@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^login/$', views.login),
     url(r'^register/$', views.register),
     url(r'^logout/$', views.logout),
+    url(r'^graphql/$', GraphQLView.as_view(graphiql=True, schema=schema)),
 ]
