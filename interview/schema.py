@@ -188,11 +188,13 @@ class GetInterviewRecord(graphene.Mutation):
             # 处理面试时间
             if not quiz.quiz_time or not quiz.submit_times or not quiz.duration:
                 quiz_time = str(quiz.start_datetime)[:19]
+                # 将计算结果存入 quiz_time 字段
                 quiz.quiz_time = quiz_time
                 try:
                     submit_times = quiz.submitted_questions.count(",")
                 except AttributeError:  # 捕捉 submitted_questions 字段为 None 的情况
                     submit_times = 0
+                # 将计算结果存入 submit_times 字段
                 quiz.submit_times = submit_times
                 try:
                     duration_int = (quiz.finish_datetime - quiz.start_datetime).seconds
@@ -204,7 +206,7 @@ class GetInterviewRecord(graphene.Mutation):
                         duration = '0秒'
                 except TypeError:  # 捕捉 finish_datetime 未记录的情况
                     duration = '非正常退出，无法获取时长'
-                # 讲计算结果存入 duration 字段
+                # 将计算结果存入 duration 字段
                 quiz.duration = duration
                 quiz.save()
         quizzes_queryset = Quiz.objects.filter(user__username=username, company_id=company)
@@ -258,7 +260,7 @@ class Submit(graphene.Mutation):
         if str(question) + ',' not in quiz_instance.submitted_questions:
             quiz_instance.submitted_questions += str(question) + ','
         quiz_instance.save()
-        return FinishInterview(ok=True, quiz_record=quiz_instance)
+        return Submit(ok=True, quiz_record=quiz_instance)
 
 
 class Mutation(graphene.ObjectType):
