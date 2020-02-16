@@ -85,7 +85,9 @@ class Quiz(models.Model):
     finish_datetime字段：      记录结束时间，可以为空（非正常离开就会为空）
     submitted_questions字段：  记录提交的题目，预设为空字符串，可以为空
     duration字段：             记录测试时长，可以为空
-
+    quiz_time字段：            记录面试时间，可以为空
+    submit_times字段：         记录提交次数，可以为空
+    
     """
     user = models.ForeignKey(User, on_delete=User)
     company = models.ForeignKey(Company, on_delete=Company)
@@ -93,5 +95,7 @@ class Quiz(models.Model):
     finish_datetime = models.DateTimeField(null=True)
     submitted_questions = models.CharField(max_length=20, default="", null=True)
     duration = models.CharField(max_length=20, null=True)
+    quiz_time = models.CharField(max_length=20, null=True)
+    submit_times = models.IntegerField(null=True)
 
 
